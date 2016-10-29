@@ -2,14 +2,12 @@ package com.redbonesolutions.highline.controllers;
 
 import java.util.List;
 
+import com.redbonesolutions.highline.domain.Activity;
+import com.redbonesolutions.highline.models.RideModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.redbonesolutions.highline.domain.Ride;
 import com.redbonesolutions.highline.domain.ui.Option;
@@ -18,6 +16,7 @@ import com.redbonesolutions.highline.service.RideService;
 
 @RestController
 @RequestMapping("/service/ride")
+@CrossOrigin(origins = "http://localhost:8090")
 public class RideController {
 
     private final static Logger LOG = LoggerFactory.getLogger(RideController.class);
@@ -74,25 +73,19 @@ public class RideController {
 
     }
 
-    @RequestMapping(value="/{id}/{user_id}", method = RequestMethod.GET)
+    @RequestMapping(value="/user/{user_id}", method = RequestMethod.GET)
     public List<Ride> getRidesByUser(
-            @PathVariable("id") int id,
             @PathVariable("user_id") int user_id) {
 
-        LOG.debug(String.format("ride id:%s", id));
-        System.out.println(String.format("ride id:%s", id));
+        return rideService.getRidesByUser(user_id);
 
-        LOG.debug(String.format("ride user_id:%s", user_id));
-        System.out.println(String.format("ride user_id:%s", user_id));
+    }
 
-        List<Ride> rides = rideService.getRidesByUser(user_id);
+    @RequestMapping(value="/rides/user/{user_id}", method = RequestMethod.GET)
+    public List<RideModel> getRideModelsByUser(
+            @PathVariable("user_id") int user_id) {
 
-        for (Ride r : rides) {
-            LOG.debug(String.format("ride: %s", r.toString()));
-            System.out.println(String.format("ride: %s", r.toString()));
-        }
-
-        return rides;
+        return rideService.getActivityStreamByUser(user_id);
 
     }
 

@@ -1,16 +1,20 @@
 package com.redbonesolutions.highline.service;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import com.redbonesolutions.highline.domain.*;
+import com.redbonesolutions.highline.repository.EquipmentRepository;
+import com.redbonesolutions.highline.repository.GruppeRepository;
+import com.redbonesolutions.highline.repository.RideRepository;
 import org.jasypt.contrib.org.apache.commons.codec_1_3.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.redbonesolutions.highline.domain.Gruppe;
-import com.redbonesolutions.highline.domain.User;
 import com.redbonesolutions.highline.repository.UserRepository;
 import com.redbonesolutions.highline.utility.HighlineLogin;
 import com.redbonesolutions.highline.utility.HighlineUtility;
@@ -22,6 +26,15 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private GruppeRepository gruppeRepository;
+
+    @Autowired
+    private RideRepository rideRepository;
+
+    @Autowired
+    private EquipmentRepository equipmentRepository;
+
+    @Autowired
     private HighlineLogin highlineLogin;
 
     public List<User> findAll() {
@@ -29,10 +42,17 @@ public class UserService {
         // add a test comment for atlassian
         List<User> users = userRepository.findAll();
 
-
         for (User user : users) {
+
+            List<Ride> rides = rideRepository.getRidesByUser(user.getId());
+            user.setRides(new HashSet<>(rides));
+
+            List<Equipment> equipment = equipmentRepository.getEquipmentByUserId(user.getId());
+            user.setEquipment(new HashSet<>(equipment));
+
             for (Gruppe gruppe : user.getGruppes()) {
-                gruppe.setMembers(userRepository.getUsersInGruppe(gruppe.getId()));
+                List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());
+                gruppe.setMembers(HighlineUtility.getMembersFromUsers(gruppeUsers));
             }
         }
 
@@ -43,8 +63,18 @@ public class UserService {
 
         User user = userRepository.findOne(id);
 
+        List<Equipment> equipment = equipmentRepository.getEquipmentByUserId(id);
+        user.setEquipment(new HashSet<>(equipment));
+
+        List<Gruppe> gruppes = gruppeRepository.findAllByUser(id);
+        user.setGruppes(new HashSet<>(gruppes));
+
+        List<Ride> rides = rideRepository.getRidesByUser(id);
+        user.setRides(new HashSet<>(rides));
+
         for (Gruppe gruppe : user.getGruppes()) {
-            gruppe.setMembers(userRepository.getUsersInGruppe(gruppe.getId()));
+            List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());
+            gruppe.setMembers(HighlineUtility.getMembersFromUsers(gruppeUsers));
         }
 
         return user;

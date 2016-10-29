@@ -2,6 +2,7 @@ package com.redbonesolutions.highline.service;
 
 import java.util.List;
 
+import com.redbonesolutions.highline.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +42,9 @@ public class GruppeService {
 
     public Gruppe findOne(long id) {
 
-        Gruppe gruppe =gruppeRepository.findOne(id);
-        gruppe.setMembers(userRepository.getUsersInGruppe(id));
+        Gruppe gruppe = gruppeRepository.findOne(id);
+        List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());
+        gruppe.setMembers(HighlineUtility.getMembersFromUsers(gruppeUsers));
         return gruppe;
     }
 
@@ -51,10 +53,15 @@ public class GruppeService {
         List<Gruppe> gruppes = gruppeRepository.findAllByUser(id);
 
         for (Gruppe gruppe : gruppes) {
-            gruppe.setMembers(userRepository.getUsersInGruppe(gruppe.getId()));
+            List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());
+            gruppe.setMembers(HighlineUtility.getMembersFromUsers(gruppeUsers));
         }
 
         return gruppes;
+    }
+
+    public String findNameById(Long id) {
+        return gruppeRepository.findNameById(id);
     }
 
 }

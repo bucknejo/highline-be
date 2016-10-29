@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -115,6 +116,12 @@ public class RideMember extends AbstractPersistable<Long> {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isNew() {
+        return false;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.redbonesolutions.highline.domain;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -102,6 +103,12 @@ public class Photo extends AbstractPersistable<Long> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isNew() {
+        return false;
     }
 
 }

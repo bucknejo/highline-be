@@ -3,6 +3,7 @@ package com.redbonesolutions.highline.domain;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -138,6 +139,12 @@ public class Address extends AbstractPersistable<Long> {
 
     public void setPrimary(int primary) {
         this.primary = primary;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isNew() {
+        return false;
     }
 
     @Override

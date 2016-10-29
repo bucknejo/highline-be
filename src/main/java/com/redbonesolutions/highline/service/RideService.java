@@ -1,14 +1,14 @@
 package com.redbonesolutions.highline.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.redbonesolutions.highline.domain.*;
+import com.redbonesolutions.highline.domain.Activity;
+import com.redbonesolutions.highline.models.RideModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.redbonesolutions.highline.domain.Gruppe;
-import com.redbonesolutions.highline.domain.Ride;
-import com.redbonesolutions.highline.domain.RideMember;
-import com.redbonesolutions.highline.domain.User;
 import com.redbonesolutions.highline.repository.RideRepository;
 import com.redbonesolutions.highline.utility.HighlineUtility;
 
@@ -20,6 +20,9 @@ public class RideService {
 
     @Autowired
     private GruppeService gruppeService;
+
+    @Autowired
+    private LocationService locationService;
 
     @Autowired
     private RideMemberService rideMemberService;
@@ -53,15 +56,42 @@ public class RideService {
         return rideRepository.getRidesByUser(user_id);
     }
 
+    public List<RideModel> getActivityStreamByUser(long user_id) {
+        List<RideModel> models = new ArrayList<RideModel>();
+        List<Ride> rides = rideRepository.getRidesByUser(user_id);
+
+        for (Ride ride : rides) {
+            Location location = locationService.findOne(ride.getLocation_id());
+            String gruppe_name = gruppeService.findNameById(ride.getGroup_id());
+
+            RideModel model = new RideModel();
+            model.setId(ride.getId());
+            model.setName(ride.getName());
+            model.setDescription(ride.getDescription());
+            model.setGruppe(gruppe_name);
+            model.setLocation(location.getName());
+            model.setDate(ride.getDate());
+            model.setTime(ride.getTime());
+            model.setStatus(ride.getStatus());
+            model.setJoinable(ride.getJoinable());
+            model.setTempo(ride.getTempo());
+            model.setDrop(ride.getDrop());
+            model.setAvailable(ride.getAvailable());
+            models.add(model);
+        }
+
+        return models;
+    }
+
     public Ride addGruppeToRide(long ride_id, long gruppe_id) {
 
         Ride r = this.findOne(ride_id);
 
         Gruppe gruppe = gruppeService.findOne(gruppe_id);
 
-        for (User u : gruppe.getMembers()) {
+        for (GruppeMember member : gruppe.getMembers()) {
 
-            RideMember rm = rideMemberService.getRideMemberByRideAndUser(ride_id, u.getId());
+            RideMember rm = rideMemberService.getRideMemberByRideAndUser(ride_id, member.getUser_id());
 
             if (rm == null) {
                 rm = new RideMember();
@@ -69,7 +99,7 @@ public class RideService {
                 rm.setLast_updated(HighlineUtility.getLastModified());
                 rm.setActive(1);
                 rm.setRide_id(ride_id);
-                rm.setUser_id(u.getId());
+                rm.setUser_id(member.getUser_id());
                 rm.setGroup_id(gruppe_id);
                 rm.setRsvp(0);
                 rm.setStatus("ON TIME");

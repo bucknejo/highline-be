@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -50,6 +51,10 @@ public class User extends AbstractPersistable<Long> {
     // groups
     @Transient
     private Set<Gruppe> gruppes;
+
+    // rides
+    @Transient
+    private Set<Ride> rides;
 
     public User() {}
 
@@ -233,13 +238,26 @@ public class User extends AbstractPersistable<Long> {
         this.available = available;
     }
 
-
     public Set<Gruppe> getGruppes() {
         return gruppes;
     }
 
     public void setGruppes(Set<Gruppe> gruppes) {
         this.gruppes = gruppes;
+    }
+
+    public Set<Ride> getRides() {
+        return rides;
+    }
+
+    public void setRides(Set<Ride> rides) {
+        this.rides = rides;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isNew() {
+        return false;
     }
 
     @Override

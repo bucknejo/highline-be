@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -21,7 +22,7 @@ public class Ride extends AbstractPersistable<Long> {
     private String name;
     private String description;
     private int user_id;
-    private int group_id;
+    private long group_id;
     private int location_id;
     private int address_id;
     private String date;
@@ -85,11 +86,11 @@ public class Ride extends AbstractPersistable<Long> {
         this.user_id = user_id;
     }
 
-    public int getGroup_id() {
+    public long getGroup_id() {
         return group_id;
     }
 
-    public void setGroup_id(int group_id) {
+    public void setGroup_id(long group_id) {
         this.group_id = group_id;
     }
 
@@ -163,6 +164,12 @@ public class Ride extends AbstractPersistable<Long> {
 
     public void setAvailable(int available) {
         this.available = available;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isNew() {
+        return false;
     }
 
     @Override

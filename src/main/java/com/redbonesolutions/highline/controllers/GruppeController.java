@@ -5,17 +5,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.redbonesolutions.highline.domain.Gruppe;
 import com.redbonesolutions.highline.service.GruppeService;
 
 @RestController
 @RequestMapping("/service/gruppe")
+@CrossOrigin(origins = "http://localhost:8090")
 public class GruppeController {
 
     private final static Logger LOG = LoggerFactory.getLogger(GruppeController.class);

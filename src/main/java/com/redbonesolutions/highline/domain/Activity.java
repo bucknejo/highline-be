@@ -1,38 +1,28 @@
 package com.redbonesolutions.highline.domain;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 @Entity
-@Table (name = "gruppe")
-public class Gruppe extends AbstractPersistable<Long> {
+@Table(name = "activity")
+public class Activity extends AbstractPersistable<Long> {
 
     private static final long serialVersionUID = 1L;
 
     private String date_created;
     private String last_updated;
     private int active;
+    private long user_id;
     private String name;
     private String description;
-    private int user_id;
-    private int deputy;
-    private int type;
-    private int joinable;
-    private int locked;
+    private String note;
+    private String type;
+    private long type_id;
 
-    @Transient
-    private User user;
-
-    @Transient
-    private List<GruppeMember> members;
-
-    public Gruppe() {}
+    public Activity() {}
 
     public String getDate_created() {
         return date_created;
@@ -58,6 +48,14 @@ public class Gruppe extends AbstractPersistable<Long> {
         this.active = active;
     }
 
+    public long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
+    }
+
     public String getName() {
         return name;
     }
@@ -74,52 +72,28 @@ public class Gruppe extends AbstractPersistable<Long> {
         this.description = description;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getNote() {
+        return note;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setNote(String note) {
+        this.note = note;
     }
 
-    public int getDeputy() {
-        return deputy;
-    }
-
-    public void setDeputy(int deputy) {
-        this.deputy = deputy;
-    }
-
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public int getJoinable() {
-        return joinable;
+    public long getType_id() {
+        return type_id;
     }
 
-    public void setJoinable(int joinable) {
-        this.joinable = joinable;
-    }
-
-    public int getLocked() {
-        return locked;
-    }
-
-    public void setLocked(int locked) {
-        this.locked = locked;
-    }
-
-    public List<GruppeMember> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<GruppeMember> list) {
-        this.members = list;
+    public void setType_id(long type_id) {
+        this.type_id = type_id;
     }
 
     @Override
@@ -127,5 +101,6 @@ public class Gruppe extends AbstractPersistable<Long> {
     public boolean isNew() {
         return false;
     }
+
 
 }

@@ -14,6 +14,10 @@ public class EquipmentService {
     @Autowired
     private EquipmentRepository equipmentRepository;
 
+    public List<Equipment> getEquipmentByUserId(Long user_id) {
+        return equipmentRepository.getEquipmentByUserId(user_id);
+    }
+
     public List<Equipment> findAll() {
         return equipmentRepository.findAll();
     }

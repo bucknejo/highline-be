@@ -7,15 +7,12 @@ import java.util.List;
 import java.util.Random;
 
 import com.redbonesolutions.highline.domain.*;
-import com.redbonesolutions.highline.repository.EquipmentRepository;
-import com.redbonesolutions.highline.repository.GruppeRepository;
-import com.redbonesolutions.highline.repository.RideRepository;
+import com.redbonesolutions.highline.repository.*;
 import org.jasypt.contrib.org.apache.commons.codec_1_3.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.redbonesolutions.highline.repository.UserRepository;
 import com.redbonesolutions.highline.utility.HighlineLogin;
 import com.redbonesolutions.highline.utility.HighlineUtility;
 
@@ -35,6 +32,9 @@ public class UserService {
     private EquipmentRepository equipmentRepository;
 
     @Autowired
+    private PreferencesRepository preferencesRepository;
+
+    @Autowired
     private HighlineLogin highlineLogin;
 
     public List<User> findAll() {
@@ -49,6 +49,9 @@ public class UserService {
 
             List<Equipment> equipment = equipmentRepository.getEquipmentByUserId(user.getId());
             user.setEquipment(new HashSet<>(equipment));
+
+            List<Preferences> preferences = preferencesRepository.getPreferencesByUser(user.getId());
+            user.setPreferences(new HashSet<>(preferences));
 
             for (Gruppe gruppe : user.getGruppes()) {
                 List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());
@@ -71,6 +74,9 @@ public class UserService {
 
         List<Ride> rides = rideRepository.getRidesByUser(id);
         user.setRides(new HashSet<>(rides));
+
+        List<Preferences> preferences = preferencesRepository.getPreferencesByUser(id);
+        user.setPreferences(new HashSet<>(preferences));
 
         for (Gruppe gruppe : user.getGruppes()) {
             List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());

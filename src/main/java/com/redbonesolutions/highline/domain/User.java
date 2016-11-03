@@ -56,6 +56,10 @@ public class User extends AbstractPersistable<Long> {
     @Transient
     private Set<Ride> rides;
 
+    // preferences
+    @Transient
+    private Set<Preferences> preferences;
+
     public User() {}
 
     public void setId(long id) {
@@ -254,6 +258,14 @@ public class User extends AbstractPersistable<Long> {
         this.rides = rides;
     }
 
+    public Set<Preferences> getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(Set<Preferences> preferences) {
+        this.preferences = preferences;
+    }
+
     @Override
     @JsonIgnore
     public boolean isNew() {
@@ -262,19 +274,32 @@ public class User extends AbstractPersistable<Long> {
 
     @Override
     public String toString() {
-        return "User [date_created=" + date_created + ", last_updated="
-                + last_updated + ", active=" + active + ", user_name_internal="
-                + user_name_internal + ", user_name_external="
-                + user_name_external + ", first_name=" + first_name
-                + ", last_name=" + last_name + ", password=" + password
-                + ", role_id=" + role_id + ", email=" + email + ", skill="
-                + skill + ", experience=" + experience + ", style=" + style
-                + ", guide=" + guide + ", salt=" + salt + ", viewable="
-                + viewable + ", avatar=" + avatar + ", gender=" + gender
-                + ", reputation=" + reputation + ", equipment=" + equipment
-                + ", friends=" + friends + ", available=" + available
-                + ", gruppes=" + gruppes + "]";
+        return "User{" +
+                "date_created='" + date_created + '\'' +
+                ", last_updated='" + last_updated + '\'' +
+                ", active=" + active +
+                ", user_name_internal='" + user_name_internal + '\'' +
+                ", user_name_external='" + user_name_external + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", password='" + password + '\'' +
+                ", role_id=" + role_id +
+                ", email='" + email + '\'' +
+                ", skill='" + skill + '\'' +
+                ", experience=" + experience +
+                ", style='" + style + '\'' +
+                ", guide=" + guide +
+                ", salt='" + salt + '\'' +
+                ", viewable=" + viewable +
+                ", avatar='" + avatar + '\'' +
+                ", gender='" + gender + '\'' +
+                ", reputation=" + reputation +
+                ", equipment=" + equipment +
+                ", friends=" + friends +
+                ", available=" + available +
+                ", gruppes=" + gruppes +
+                ", rides=" + rides +
+                ", preferences=" + preferences +
+                '}';
     }
-
-
 }

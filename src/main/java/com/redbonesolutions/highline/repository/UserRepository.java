@@ -28,4 +28,7 @@ public interface UserRepository extends JpaRepository<User, Long>  {
     @Query(value = "select * from user where id in (select friend_id from user_members where user_id = :uid1 and status = 1 and friend_id not in (select user_id from ride_members where ride_id = :rid and user_id != :uid2))", nativeQuery=true)
     List<User> getFriendsNotInRide(@Param("uid1") Long uid1, @Param("rid") Long rid, @Param("uid2") Long uid2);
 
+    @Query(value="select * from user where id in (select user_id from redbone1_highline.ride_members where ride_id = :ride_id and user_id != :user_id)", nativeQuery=true)
+    List<User> getRidersByRide(@Param("ride_id") long ride_id, @Param("user_id") long user_id);
+
 }

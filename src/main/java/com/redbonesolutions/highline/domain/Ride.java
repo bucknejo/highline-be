@@ -1,10 +1,9 @@
 package com.redbonesolutions.highline.domain;
 
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -33,6 +32,9 @@ public class Ride extends AbstractPersistable<Long> {
     @Column(name="[drop]")
     private int drop;
     private int available;
+
+    @Transient
+    private List<User> riders;
 
     public Ride() {
 
@@ -164,6 +166,14 @@ public class Ride extends AbstractPersistable<Long> {
 
     public void setAvailable(int available) {
         this.available = available;
+    }
+
+    public List<User> getRiders() {
+        return riders;
+    }
+
+    public void setRiders(List<User> riders) {
+        this.riders = riders;
     }
 
     @Override

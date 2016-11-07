@@ -3,10 +3,7 @@ package com.redbonesolutions.highline.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.redbonesolutions.highline.domain.User;
 import com.redbonesolutions.highline.service.UserService;
@@ -14,6 +11,7 @@ import com.redbonesolutions.highline.utility.HighlineLogin;
 
 @RestController
 @RequestMapping("/service")
+@CrossOrigin(origins = "http://localhost:8090")
 public class LoginController {
 
     private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);

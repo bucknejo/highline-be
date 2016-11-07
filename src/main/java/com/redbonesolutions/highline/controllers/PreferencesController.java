@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/service/preferences")
+@CrossOrigin(origins = "http://localhost:8090")
 public class PreferencesController {
 
     private final static Logger LOG = LoggerFactory.getLogger(PreferencesController.class);

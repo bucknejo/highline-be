@@ -5,17 +5,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.redbonesolutions.highline.domain.Address;
 import com.redbonesolutions.highline.service.AddressService;
 
 @RestController
 @RequestMapping("/service/address")
+@CrossOrigin(origins = "http://localhost:8090")
 public class AddressController {
 
     private final static Logger LOG = LoggerFactory.getLogger(AddressController.class);

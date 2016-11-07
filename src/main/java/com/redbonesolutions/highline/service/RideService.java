@@ -27,6 +27,9 @@ public class RideService {
     @Autowired
     private RideMemberService rideMemberService;
 
+    @Autowired
+    private UserService userService;
+
     public List<Ride> findAll() {
         return rideRepository.findAll();
     }
@@ -53,7 +56,15 @@ public class RideService {
     }
 
     public List<Ride> getRidesByUser(long user_id) {
-        return rideRepository.getRidesByUser(user_id);
+
+        List<Ride> rides = rideRepository.getRidesByUser(user_id);
+
+        for (Ride ride : rides) {
+            List<User> riders = userService.getRidersByRide(ride.getId(), user_id);
+            ride.setRiders(riders);
+        }
+
+        return rides;
     }
 
     public List<RideModel> getActivityStreamByUser(long user_id) {
@@ -77,6 +88,7 @@ public class RideService {
             model.setTempo(ride.getTempo());
             model.setDrop(ride.getDrop());
             model.setAvailable(ride.getAvailable());
+
             models.add(model);
         }
 

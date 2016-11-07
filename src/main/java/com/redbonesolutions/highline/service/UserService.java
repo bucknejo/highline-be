@@ -98,6 +98,10 @@ public class UserService {
         userRepository.delete(user);
     }
 
+    public List<User> getRidersByRide(long ride_id, long user_id) {
+        return userRepository.getRidersByRide(ride_id, user_id);
+    };
+
     // routine to validate User object for storage
     public boolean validateUser(User user) {
 

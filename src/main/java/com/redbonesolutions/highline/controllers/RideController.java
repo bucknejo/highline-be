@@ -2,7 +2,6 @@ package com.redbonesolutions.highline.controllers;
 
 import java.util.List;
 
-import com.redbonesolutions.highline.domain.Activity;
 import com.redbonesolutions.highline.models.RideModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,7 @@ public class RideController {
     @Autowired
     private AddressService addressService;
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @RequestMapping(value="", method = RequestMethod.GET)
     public List<Ride> rides() {
 
         List<Ride> rides = rideService.findAll();
@@ -120,6 +119,28 @@ public class RideController {
         LOG.debug(String.format("ride [ride add gruppe]: %s", ride.toString()));
 
         return ride;
+
+    }
+
+    @RequestMapping(value="/{id}/{user_id}", method = RequestMethod.GET)
+    public List<Ride> getRidesByUser(
+            @PathVariable("id") int id,
+            @PathVariable("user_id") int user_id) {
+
+        LOG.debug(String.format("ride id:%s", id));
+        System.out.println(String.format("ride id:%s", id));
+
+        LOG.debug(String.format("ride user_id:%s", user_id));
+        System.out.println(String.format("ride user_id:%s", user_id));
+
+        List<Ride> rides = rideService.getRidesByUser(user_id);
+
+        for (Ride r : rides) {
+            LOG.debug(String.format("ride: %s", r.toString()));
+            System.out.println(String.format("ride: %s", r.toString()));
+        }
+
+        return rides;
 
     }
 

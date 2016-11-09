@@ -20,7 +20,7 @@ public class FriendService {
 
         List<Object[]> objects =userRepository.getFriends(user_id);
 
-        List<Friend> friends = new ArrayList<Friend>();
+        List<Friend> friends = new ArrayList<>();
 
         for(Object[] o : objects) {
             Friend f = new Friend();

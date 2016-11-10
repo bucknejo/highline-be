@@ -12,7 +12,6 @@ import com.redbonesolutions.highline.service.MemberService;
 
 @RestController
 @RequestMapping("/service/member")
-@CrossOrigin(origins = "http://localhost:8090")
 public class MemberController {
 
     private final static Logger LOG = LoggerFactory.getLogger(MemberController.class);

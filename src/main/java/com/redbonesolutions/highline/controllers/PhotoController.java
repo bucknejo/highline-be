@@ -12,7 +12,6 @@ import com.redbonesolutions.highline.service.PhotoService;
 
 @RestController
 @RequestMapping("/service/photo")
-@CrossOrigin(origins = "http://localhost:8090")
 public class PhotoController {
 
     private final static Logger LOG = LoggerFactory.getLogger(PhotoController.class);

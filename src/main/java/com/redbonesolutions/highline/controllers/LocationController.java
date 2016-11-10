@@ -12,7 +12,6 @@ import com.redbonesolutions.highline.service.LocationService;
 
 @RestController
 @RequestMapping("/service/location")
-@CrossOrigin(origins = "http://localhost:8090")
 public class LocationController {
 
     private final static Logger LOG = LoggerFactory.getLogger(LocationController.class);

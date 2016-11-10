@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/service/option")
-@CrossOrigin(origins = "http://localhost:8090")
 public class OptionController {
 
 }

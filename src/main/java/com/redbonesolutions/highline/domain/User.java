@@ -60,6 +60,9 @@ public class User extends AbstractPersistable<Long> {
     @Transient
     private Set<Preferences> preferences;
 
+    @Transient
+    private Set<UserAddress> addresses;
+
     public User() {}
 
     public void setId(long id) {
@@ -264,6 +267,14 @@ public class User extends AbstractPersistable<Long> {
 
     public void setPreferences(Set<Preferences> preferences) {
         this.preferences = preferences;
+    }
+
+    public Set<UserAddress> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<UserAddress> addresses) {
+        this.addresses = addresses;
     }
 
     @Override

@@ -13,7 +13,6 @@ import com.redbonesolutions.highline.service.FriendService;
 
 @RestController
 @RequestMapping("/service/friend")
-@CrossOrigin(origins = "http://localhost:8090")
 public class FriendController {
 
     private final static Logger LOG = LoggerFactory.getLogger(FriendController.class);

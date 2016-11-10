@@ -35,6 +35,9 @@ public class UserService {
     private PreferencesRepository preferencesRepository;
 
     @Autowired
+    private UserAddressRepository userAddressRepository;
+
+    @Autowired
     private HighlineLogin highlineLogin;
 
     public List<User> findAll() {
@@ -55,6 +58,9 @@ public class UserService {
 
             List<Object[]> friends = userRepository.getFriends(user.getId());
             user.setFriends(new HashSet<>(Friend.convertFriends(friends)));
+
+            List<UserAddress> addresses = userAddressRepository.findUserAddressesByUserId(user.getId());
+            user.setAddresses(new HashSet<>(addresses));
 
             for (Gruppe gruppe : user.getGruppes()) {
                 List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());
@@ -84,6 +90,8 @@ public class UserService {
         List<Object[]> friends = userRepository.getFriends(id);
         user.setFriends(new HashSet<>(Friend.convertFriends(friends)));
 
+        List<UserAddress> addresses = userAddressRepository.findUserAddressesByUserId(id);
+        user.setAddresses(new HashSet<>(addresses));
 
         for (Gruppe gruppe : user.getGruppes()) {
             List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());

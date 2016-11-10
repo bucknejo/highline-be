@@ -12,7 +12,6 @@ import com.redbonesolutions.highline.service.GruppeService;
 
 @RestController
 @RequestMapping("/service/gruppe")
-@CrossOrigin(origins = "http://localhost:8090")
 public class GruppeController {
 
     private final static Logger LOG = LoggerFactory.getLogger(GruppeController.class);

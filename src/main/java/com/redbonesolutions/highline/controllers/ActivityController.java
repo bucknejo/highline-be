@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/service/activity")
-@CrossOrigin(origins = "http://localhost:8090")
 public class ActivityController {
 
     private final static Logger LOG = LoggerFactory.getLogger(ActivityController.class);

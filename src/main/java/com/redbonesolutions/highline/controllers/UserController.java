@@ -12,7 +12,6 @@ import com.redbonesolutions.highline.service.UserService;
 
 @RestController
 @RequestMapping("/service/user")
-@CrossOrigin(origins = "http://localhost:8090")
 public class UserController {
 
     private final static Logger LOG = LoggerFactory.getLogger(UserController.class);

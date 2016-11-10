@@ -11,7 +11,6 @@ import com.redbonesolutions.highline.utility.HighlineLogin;
 
 @RestController
 @RequestMapping("/service")
-@CrossOrigin(origins = "http://localhost:8090")
 public class LoginController {
 
     private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);

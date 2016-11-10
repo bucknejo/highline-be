@@ -42,7 +42,7 @@ public class User extends AbstractPersistable<Long> {
 
     // friends
     @Transient
-    private Set<User> friends;
+    private Set<Friend> friends;
 
     // available
     @Transient
@@ -226,11 +226,11 @@ public class User extends AbstractPersistable<Long> {
         this.equipment = equipment;
     }
 
-    public Set<User> getFriends() {
+    public Set<Friend> getFriends() {
         return friends;
     }
 
-    public void setFriends(Set<User> friends) {
+    public void setFriends(Set<Friend> friends) {
         this.friends = friends;
     }
 

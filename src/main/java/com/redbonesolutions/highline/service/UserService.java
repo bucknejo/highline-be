@@ -53,6 +53,9 @@ public class UserService {
             List<Preferences> preferences = preferencesRepository.getPreferencesByUser(user.getId());
             user.setPreferences(new HashSet<>(preferences));
 
+            List<Object[]> friends = userRepository.getFriends(user.getId());
+            user.setFriends(new HashSet<>(Friend.convertFriends(friends)));
+
             for (Gruppe gruppe : user.getGruppes()) {
                 List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());
                 gruppe.setMembers(HighlineUtility.getMembersFromUsers(gruppeUsers));
@@ -77,6 +80,10 @@ public class UserService {
 
         List<Preferences> preferences = preferencesRepository.getPreferencesByUser(id);
         user.setPreferences(new HashSet<>(preferences));
+
+        List<Object[]> friends = userRepository.getFriends(id);
+        user.setFriends(new HashSet<>(Friend.convertFriends(friends)));
+
 
         for (Gruppe gruppe : user.getGruppes()) {
             List<User> gruppeUsers = userRepository.getUsersInGruppe(gruppe.getId());

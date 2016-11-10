@@ -1,5 +1,8 @@
 package com.redbonesolutions.highline.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Friend {
 
     private long id;
@@ -224,6 +227,39 @@ public class Friend {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public static List<Friend> convertFriends(List<Object[]> objects) {
+
+        List<Friend> friends = new ArrayList<>();
+
+        for(Object[] o : objects) {
+            Friend f = new Friend();
+            f.setId((Integer) o[0]);
+            f.setDate_created(o[1].toString());
+            f.setLast_updated(o[2].toString());
+            f.setActive((Integer)o[3]);
+            f.setUser_name_internal((o[4] != null ? o[4].toString() : ""));
+            f.setUser_name_external((o[5] != null ? o[5].toString() : ""));
+            f.setFirst_name(o[6].toString());
+            f.setLast_name(o[7].toString());
+            f.setPassword(o[8].toString());
+            f.setRole_id((Integer)o[9]);
+            f.setEmail(o[10].toString());
+            f.setSkill(o[11].toString());
+            f.setExperience(o[12].toString());
+            f.setStyle(o[13].toString());
+            f.setGuide((Integer)o[14]);
+            f.setSalt(o[15].toString());
+            f.setViewable((Integer)o[16]);
+            f.setAvatar((o[17] != null ? o[17].toString() : ""));
+            f.setGender(o[18].toString());
+            f.setReputation((Integer)o[19]);
+            f.setStatus((Integer)o[20]);
+            friends.add(f);
+        }
+
+        return friends;
     }
 
 }

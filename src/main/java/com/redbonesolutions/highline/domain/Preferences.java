@@ -26,6 +26,12 @@ public class Preferences extends AbstractPersistable<Long> {
     private int notify_sms_activity;
     private int notify_sms_alerts;
 
+    private int address_show_all;
+    private int address_show_street;
+    private int address_show_city;
+    private int address_show_state;
+    private int address_show_zip;
+
     public Preferences() {}
 
     public String getDate_created() {
@@ -130,6 +136,46 @@ public class Preferences extends AbstractPersistable<Long> {
 
     public void setNotify_sms_alerts(int notify_sms_alerts) {
         this.notify_sms_alerts = notify_sms_alerts;
+    }
+
+    public int getAddress_show_all() {
+        return address_show_all;
+    }
+
+    public void setAddress_show_all(int address_show_all) {
+        this.address_show_all = address_show_all;
+    }
+
+    public int getAddress_show_street() {
+        return address_show_street;
+    }
+
+    public void setAddress_show_street(int address_show_street) {
+        this.address_show_street = address_show_street;
+    }
+
+    public int getAddress_show_city() {
+        return address_show_city;
+    }
+
+    public void setAddress_show_city(int address_show_city) {
+        this.address_show_city = address_show_city;
+    }
+
+    public int getAddress_show_state() {
+        return address_show_state;
+    }
+
+    public void setAddress_show_state(int address_show_state) {
+        this.address_show_state = address_show_state;
+    }
+
+    public int getAddress_show_zip() {
+        return address_show_zip;
+    }
+
+    public void setAddress_show_zip(int address_show_zip) {
+        this.address_show_zip = address_show_zip;
     }
 
     @Override

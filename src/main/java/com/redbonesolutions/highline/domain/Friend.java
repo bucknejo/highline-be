@@ -2,6 +2,7 @@ package com.redbonesolutions.highline.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Friend {
 
@@ -26,6 +27,10 @@ public class Friend {
     private String gender;
     private int reputation;
     private int status;
+
+    private Set<UserAddress> addresses;
+
+    private Set<Preferences> preferences;
 
     public Friend(long id, String date_created, String last_updated,
                   int active, String user_name_internal, String user_name_external,
@@ -227,6 +232,22 @@ public class Friend {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Set<UserAddress> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<UserAddress> addresses) {
+        this.addresses = addresses;
+    }
+
+    public Set<Preferences> getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(Set<Preferences> preferences) {
+        this.preferences = preferences;
     }
 
     public static List<Friend> convertFriends(List<Object[]> objects) {

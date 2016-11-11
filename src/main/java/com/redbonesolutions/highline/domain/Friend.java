@@ -28,7 +28,7 @@ public class Friend {
     private int reputation;
     private int status;
 
-    private Set<UserAddress> addresses;
+    private Set<Address> addresses;
 
     private Set<Preferences> preferences;
 
@@ -234,11 +234,11 @@ public class Friend {
         this.status = status;
     }
 
-    public Set<UserAddress> getAddresses() {
+    public Set<Address> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(Set<UserAddress> addresses) {
+    public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
     }
 

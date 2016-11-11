@@ -18,11 +18,19 @@ public class EquipmentService {
         return equipmentRepository.getEquipmentByUserId(user_id);
     }
 
+    public Equipment getEquipmentByIdAndUserId(long id, long user_id) {
+        return equipmentRepository.getEquipmentByIdAndUserId(id, user_id);
+    }
+
     public List<Equipment> findAll() {
         return equipmentRepository.findAll();
     }
 
     public Equipment save(Equipment e) {
+        return equipmentRepository.save(e);
+    }
+
+    public Equipment add(Equipment e) {
         return equipmentRepository.save(e);
     }
 

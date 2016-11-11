@@ -27,6 +27,14 @@ public class AddressService {
         return addressRepository.getAddressesByLocationId(location_id);
     }
 
+    public List<Address> findUserAddressesByUserId(long user_id) {
+        return addressRepository.findUserAddressesByUserId(user_id);
+    }
+
+    public Address findUserAddressesByIdAndUserId(long id, long user_id) {
+        return addressRepository.findUserAddressesByIdAndUserId(id, user_id);
+    }
+
     public List<Address> findAll() {
         return addressRepository.findAll();
     }

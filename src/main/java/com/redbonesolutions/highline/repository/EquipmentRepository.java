@@ -13,4 +13,7 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     @Query(value = "select * from equipment where user_id = :user_id", nativeQuery=true)
     List<Equipment> getEquipmentByUserId(@Param("user_id") Long user_id);
 
+    @Query(value = "select * from equipment where id = :id and user_id = :user_id", nativeQuery=true)
+    Equipment getEquipmentByIdAndUserId(@Param("id") Long id, @Param("user_id") Long user_id);
+
 }

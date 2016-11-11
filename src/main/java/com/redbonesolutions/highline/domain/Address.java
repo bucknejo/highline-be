@@ -27,6 +27,11 @@ public class Address extends AbstractPersistable<Long> {
     private String gps_longitude;
     private int primary;
 
+    private int user_id;
+    private int access;
+    private int rank;
+    private String sub_type;
+
     public Address() {}
 
     public String getDate_created() {
@@ -141,6 +146,38 @@ public class Address extends AbstractPersistable<Long> {
         this.primary = primary;
     }
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getAccess() {
+        return access;
+    }
+
+    public void setAccess(int access) {
+        this.access = access;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public String getSub_type() {
+        return sub_type;
+    }
+
+    public void setSub_type(String sub_type) {
+        this.sub_type = sub_type;
+    }
+
     @Override
     @JsonIgnore
     public boolean isNew() {
@@ -149,13 +186,25 @@ public class Address extends AbstractPersistable<Long> {
 
     @Override
     public String toString() {
-        return "Address [date_created=" + date_created + ", last_updated="
-                + last_updated + ", active=" + active + ", name=" + name
-                + ", description=" + description + ", type=" + type
-                + ", type_id=" + type_id + ", street=" + street + ", city="
-                + city + ", state=" + state + ", zip=" + zip
-                + ", gps_latitude=" + gps_latitude + ", gps_longitude="
-                + gps_longitude + ", primary=" + primary + "]";
+        return "Address{" +
+                "date_created='" + date_created + '\'' +
+                ", last_updated='" + last_updated + '\'' +
+                ", active=" + active +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", type_id=" + type_id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", gps_latitude='" + gps_latitude + '\'' +
+                ", gps_longitude='" + gps_longitude + '\'' +
+                ", primary=" + primary +
+                ", user_id=" + user_id +
+                ", access=" + access +
+                ", rank=" + rank +
+                ", sub_type='" + sub_type + '\'' +
+                '}';
     }
-
 }

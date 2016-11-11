@@ -31,12 +31,12 @@ public class AddressController {
         return address;
     }
 
-    @RequestMapping(value="", method=RequestMethod.POST)
+    @RequestMapping(value="", method=RequestMethod.PUT)
     public Address addAddress(@RequestBody Address address) {
         return addressService.add(address);
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+    @RequestMapping(value="/{id}", method=RequestMethod.POST)
     public Address saveAddress(
             @PathVariable(value="id") int id,
             @RequestBody Address address) {
@@ -73,6 +73,15 @@ public class AddressController {
         }
 
         return addresses;
+
+    }
+
+    @RequestMapping(value = "/id/{id}/user/{user_id}", method = RequestMethod.GET)
+    public Address findUserAddressesByIdAndUserId(
+            @PathVariable(value="id") long id,
+            @PathVariable(value="user_id") long user_id) {
+
+        return addressService.findUserAddressesByIdAndUserId(id, user_id);
 
     }
 

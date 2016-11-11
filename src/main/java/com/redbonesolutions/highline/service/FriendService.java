@@ -1,18 +1,14 @@
 package com.redbonesolutions.highline.service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import com.redbonesolutions.highline.domain.Preferences;
-import com.redbonesolutions.highline.domain.UserAddress;
+import com.redbonesolutions.highline.domain.*;
+import com.redbonesolutions.highline.repository.AddressRepository;
 import com.redbonesolutions.highline.repository.PreferencesRepository;
-import com.redbonesolutions.highline.repository.UserAddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.redbonesolutions.highline.domain.Friend;
-import com.redbonesolutions.highline.domain.User;
 import com.redbonesolutions.highline.repository.UserRepository;
 
 @Service
@@ -22,7 +18,7 @@ public class FriendService {
     private UserRepository userRepository;
 
     @Autowired
-    private UserAddressRepository userAddressRepository;
+    private AddressRepository addressRepository;
 
     @Autowired
     private PreferencesRepository preferencesRepository;
@@ -34,7 +30,7 @@ public class FriendService {
         List<Friend> friends = Friend.convertFriends(objects);
 
         for (Friend friend : friends) {
-            List<UserAddress> addresses = userAddressRepository.findUserAddressesByUserId(friend.getId());
+            List<Address> addresses = addressRepository.findUserAddressesByUserId(friend.getId());
             friend.setAddresses(new HashSet<>(addresses));
 
             List<Preferences> preferences = preferencesRepository.getPreferencesByUser(friend.getId());

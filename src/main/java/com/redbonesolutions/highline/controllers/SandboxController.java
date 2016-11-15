@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/service/sandbox")
 @CrossOrigin(origins = "http://localhost:8090")
 public class SandboxController {
 
     private final static Logger LOG = LoggerFactory.getLogger(DashboardController.class);
 
-    @RequestMapping(value = "/sandbox", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String sandbox(Locale locale, Model model) {
         LOG.info("Welcome home! The client locale is {}.", locale);
 

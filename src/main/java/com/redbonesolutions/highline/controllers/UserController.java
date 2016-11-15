@@ -90,5 +90,9 @@ public class UserController {
 
     }
 
+    @RequestMapping(value="/avatar/{avatar}/id/{id}", method = RequestMethod.POST)
+    public User updateAvatar(@PathVariable(value="avatar") String avatar, @PathVariable(value="id") long id) {
+        return userService.updateAvatar(avatar, id);
+    }
 
 }

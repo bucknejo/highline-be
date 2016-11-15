@@ -11,17 +11,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SpringBootApplication
 public class HighlineApplication {
 
-	@Value("${highline.origin}")
+	@Value("${highline.origin.ui}")
 	private String origin;
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
+
 		return new WebMvcConfigurerAdapter() {
+
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/service/**").allowedOrigins(origin);
 			}
+
 		};
+
 	}
 
 	public static void main(String[] args) {

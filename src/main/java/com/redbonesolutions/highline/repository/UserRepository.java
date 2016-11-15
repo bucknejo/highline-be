@@ -3,10 +3,12 @@ package com.redbonesolutions.highline.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.redbonesolutions.highline.domain.User;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UserRepository extends JpaRepository<User, Long>  {
 
@@ -31,4 +33,8 @@ public interface UserRepository extends JpaRepository<User, Long>  {
     @Query(value="select * from user where id in (select user_id from redbone1_highline.ride_members where ride_id = :ride_id and user_id != :user_id)", nativeQuery=true)
     List<User> getRidersByRide(@Param("ride_id") long ride_id, @Param("user_id") long user_id);
 
+    @Transactional
+    @Modifying
+    @Query(value="update user set avatar = :avatar where id = :id", nativeQuery=true)
+    int updateAvatar(@Param("avatar") String avatar, @Param("id") long id);
 }

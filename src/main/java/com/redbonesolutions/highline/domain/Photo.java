@@ -22,6 +22,9 @@ public class Photo extends AbstractPersistable<Long> {
     private int height;
     private int width;
     private String description;
+    private String generated;
+    private String original;
+    private long user_id;
 
     public Photo() {}
 
@@ -103,6 +106,30 @@ public class Photo extends AbstractPersistable<Long> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getGenerated() {
+        return generated;
+    }
+
+    public void setGenerated(String generated) {
+        this.generated = generated;
+    }
+
+    public String getOriginal() {
+        return original;
+    }
+
+    public void setOriginal(String original) {
+        this.original = original;
+    }
+
+    public long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 
     @Override

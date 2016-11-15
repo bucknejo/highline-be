@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/service/donotuse")
 public class DashboardController {
 
     private final static Logger LOG = LoggerFactory.getLogger(DashboardController.class);

@@ -126,6 +126,11 @@ public class UserService {
 
     }
 
+    public User updateAvatar(String avatar, long id) {
+        userRepository.updateAvatar(avatar, id);
+        return userRepository.findOne(id);
+    }
+
     public HighlineLogin authenticate(String email, String password) {
 
         User user = userRepository.getUserByEmail(email);

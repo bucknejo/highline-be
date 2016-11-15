@@ -31,7 +31,7 @@ public class HighlineUtility {
 
     public static List<GruppeMember> getMembersFromUsers(List<User> gruppeUsers) {
 
-        List<GruppeMember> members = new ArrayList<GruppeMember>();
+        List<GruppeMember> members = new ArrayList<>();
 
         for (User u : gruppeUsers) {
             GruppeMember member = new GruppeMember();

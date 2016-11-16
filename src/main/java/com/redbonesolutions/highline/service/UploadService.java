@@ -36,12 +36,21 @@ public class UploadService {
     @Value("${highline.upload.base}")
     private String uploadBase;
 
+    @Value("${server.contextPath}")
+    private String contextPath;
+
+    @Value("${highline.server.be}")
+    private String resourceServer;
+
+    @Value("${highline.upload.resource}")
+    private String uploadResource;
+
     public boolean saveFile(long user_id, String path_id, String original, MultipartFile file, String name, int chunks, int chunk) {
 
         boolean saved = true;
 
         String[] paths = {
-                new File(".").getAbsolutePath(),
+                File.separator,
                 uploadBase,
                 uploadPaths.get(path_id),
                 destinationPath(name, DEPTH_PATH)
@@ -72,11 +81,10 @@ public class UploadService {
         if (chunk == (chunks - 1)) {
 
             String url = uploadFile.getAbsolutePath();
-            String relativePath = relativePath(url, path_id);
+            String relativePath = String.format("%s%s%s%s", resourceServer, contextPath, uploadResource, relativePath(url, path_id));
 
             LOG.info(String.format("Chunk: %s of %s is complete.", chunk + 1, chunks));
             LOG.info("Upload is complete");
-
 
             LOG.info(String.format("url: %s", url));
             LOG.info(String.format("user_id: %s", user_id));
@@ -132,7 +140,7 @@ public class UploadService {
     }
 
     private String relativePath(String url, String path_id) {
-        return url.substring(url.indexOf(uploadPaths.get(path_id)));
+        return File.separator + url.substring(url.indexOf(uploadPaths.get(path_id)));
     }
 
     private Photo photoFactory(String url, String generated, String original, long user_id) {

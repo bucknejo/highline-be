@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -14,10 +15,22 @@ public class HighlineApplication {
 	@Value("${highline.origin.ui}")
 	private String origin;
 
+	@Value("${highline.upload.base}")
+	private String uploadBase;
+
+	@Value("${highline.upload.resource}")
+	private String uploadResource;
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 
 		return new WebMvcConfigurerAdapter() {
+
+			@Override
+			public void addResourceHandlers(ResourceHandlerRegistry registry) {
+				super.addResourceHandlers(registry);
+				registry.addResourceHandler(String.format("%s/**", uploadResource)).addResourceLocations(String.format("file:///%s", uploadBase));
+			}
 
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {

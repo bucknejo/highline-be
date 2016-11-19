@@ -34,6 +34,7 @@ public class HighlineApplication {
 
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
+				//registry.addMapping("/service/**").allowedOrigins(origin).allowedHeaders("Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");
 				registry.addMapping("/service/**").allowedOrigins(origin);
 			}
 

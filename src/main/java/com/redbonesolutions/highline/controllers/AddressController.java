@@ -31,8 +31,8 @@ public class AddressController {
         return address;
     }
 
-    @RequestMapping(value="", method=RequestMethod.PUT)
-    public Address addAddress(@RequestBody Address address) {
+    @RequestMapping(value="/update/{id}", method=RequestMethod.POST)
+    public Address addAddress(@PathVariable(value="id") int id, @RequestBody Address address) {
         return addressService.add(address);
     }
 

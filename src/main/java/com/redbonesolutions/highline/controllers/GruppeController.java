@@ -55,7 +55,7 @@ public class GruppeController {
 
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/update/{id}", method = RequestMethod.POST)
     public Gruppe saveGroup(
             @PathVariable(value="id") int id,
             @RequestBody Gruppe gruppe

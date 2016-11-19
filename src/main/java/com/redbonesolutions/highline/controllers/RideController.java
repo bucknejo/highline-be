@@ -55,7 +55,7 @@ public class RideController {
 
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/user/{id}", method = RequestMethod.POST)
     public Ride saveRide(
             @PathVariable("id") int id,
             @RequestBody Ride ride

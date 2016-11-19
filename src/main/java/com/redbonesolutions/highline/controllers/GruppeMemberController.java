@@ -56,7 +56,7 @@ public class GruppeMemberController {
     }
 
     // probably will go unused unless we add more fields to the table or use the role
-    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/update/{id}", method = RequestMethod.POST)
     public GruppeMember saveGruppeMember(
             @PathVariable(value="id") int id,
             @RequestBody GruppeMember gm

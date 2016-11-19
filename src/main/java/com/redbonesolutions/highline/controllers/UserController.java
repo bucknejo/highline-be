@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.redbonesolutions.highline.domain.User;
@@ -18,6 +20,14 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    /*
+    // allow OPTIONS requests
+    @RequestMapping(value="/**", method = RequestMethod.OPTIONS)
+    public ResponseEntity handle() {
+        return new ResponseEntity(HttpStatus.OK);
+    }
+    */
 
     // get all users
     @RequestMapping(value="", method = RequestMethod.GET)
@@ -54,7 +64,7 @@ public class UserController {
     }
 
     // put one user (save)
-    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/update/{id}", method = RequestMethod.POST)
     public User saveUser(
             @PathVariable(value="id") int id,
             @RequestBody User user

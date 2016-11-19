@@ -24,8 +24,8 @@ public class EquipmentController {
         return equipmentService.findOne(id);
     }
 
-    @RequestMapping(value="", method = RequestMethod.PUT)
-    public Equipment addEquipment(@RequestBody Equipment equipment) {
+    @RequestMapping(value="/update/{id}", method = RequestMethod.POST)
+    public Equipment addEquipment(@PathVariable(value="id") long id, @RequestBody Equipment equipment) {
         return equipmentService.add(equipment);
     }
 

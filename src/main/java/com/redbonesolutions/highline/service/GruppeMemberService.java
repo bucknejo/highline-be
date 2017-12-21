@@ -27,6 +27,10 @@ public class GruppeMemberService {
         return gruppeMemberRepository.findByGruppeIdAndUserId(gruppe_id, user_id);
     }
 
+    public List<GruppeMember> findMembersByGruppeId(Long gruppe_id) {
+        return gruppeMemberRepository.findMembersByGruppeId(gruppe_id);
+    }
+
     public GruppeMember add(GruppeMember gm) {
 
         gm.setDate_created(HighlineUtility.getCurrentDate());
@@ -43,5 +47,7 @@ public class GruppeMemberService {
     public void delete(GruppeMember gm) {
         gruppeMemberRepository.delete(gm);
     }
+
+
 
 }

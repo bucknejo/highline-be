@@ -25,6 +25,7 @@ public class Photo extends AbstractPersistable<Long> {
     private String generated;
     private String original;
     private long user_id;
+    private long album_id;
 
     public Photo() {}
 
@@ -130,6 +131,14 @@ public class Photo extends AbstractPersistable<Long> {
 
     public void setUser_id(long user_id) {
         this.user_id = user_id;
+    }
+
+    public long getAlbum_id() {
+        return album_id;
+    }
+
+    public void setAlbum_id(long album_id) {
+        this.album_id = album_id;
     }
 
     @Override

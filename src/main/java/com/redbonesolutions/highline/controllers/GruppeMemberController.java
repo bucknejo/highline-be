@@ -73,7 +73,7 @@ public class GruppeMemberController {
 
     }
 
-    @RequestMapping(value="/{id}/{gruppe_id}/{user_id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/remove/{id}/{gruppe_id}/{user_id}", method = RequestMethod.POST)
     public GruppeMember deleteGruppe(
             @PathVariable(value="id") int id,
             @PathVariable(value="gruppe_id") long gruppe_id,

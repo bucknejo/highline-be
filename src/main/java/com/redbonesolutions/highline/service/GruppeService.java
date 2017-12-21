@@ -2,7 +2,9 @@ package com.redbonesolutions.highline.service;
 
 import java.util.List;
 
+import com.redbonesolutions.highline.domain.GruppeMember;
 import com.redbonesolutions.highline.domain.User;
+import com.redbonesolutions.highline.repository.GruppeMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,9 @@ public class GruppeService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private GruppeMemberRepository gruppeMemberRepository;
 
     public List<Gruppe> findAll() {
 
@@ -38,6 +43,13 @@ public class GruppeService {
 
     public void delete(Gruppe g) {
         gruppeRepository.delete(g);
+
+        List<GruppeMember> members = gruppeMemberRepository.findMembersByGruppeId(g.getId());
+
+        for(GruppeMember member: members) {
+            gruppeMemberRepository.delete(member);
+        }
+
     }
 
     public Gruppe findOne(long id) {

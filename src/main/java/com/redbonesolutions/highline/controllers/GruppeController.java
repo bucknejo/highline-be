@@ -72,7 +72,7 @@ public class GruppeController {
 
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.POST)
     public Gruppe deleteGroup(@PathVariable(value="id") int id) {
 
         LOG.debug(String.format("delete id:%s", id));

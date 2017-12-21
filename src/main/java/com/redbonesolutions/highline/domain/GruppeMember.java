@@ -42,6 +42,10 @@ public class GruppeMember extends AbstractPersistable<Long>{
 
     }
 
+    public void setId(long id) {
+        super.setId(id);
+    }
+
     public String getDate_created() {
         return date_created;
     }
